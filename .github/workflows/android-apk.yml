@@ -33,7 +33,10 @@ jobs:
           targets: aarch64-linux-android, armv7-linux-androideabi, i686-linux-android, x86_64-linux-android
 
       - name: Install Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+with:
+  cmdline-tools-version: 15859902
+  packages: platform-tools
 
       - name: Install Android NDK
         run: sdkmanager "ndk;27.0.12077973"
