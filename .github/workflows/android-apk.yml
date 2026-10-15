@@ -1,5 +1,8 @@
 
-name: Build Android APK
+      - name: Check Android mobile configuration
+        run: |
+          cargo tree --manifest-path src-tauri/Cargo.toml --target aarch64-linux-android -i tauri
+          grep -B 2 -A 2 'pub fn run()' src-tauri/src/lib.rs
 
 on:
   workflow_dispatch:
