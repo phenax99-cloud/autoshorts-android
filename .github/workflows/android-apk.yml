@@ -6,6 +6,8 @@ on:
   push:
     paths:
       - ".github/workflows/android-apk.yml"
+      - "src-tauri/Cargo.toml"
+      - "src-tauri/Cargo.lock"
 
 jobs:
   build:
@@ -43,6 +45,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Diagnose OpenSSL dependency
+        run: cargo tree --manifest-path src-tauri/Cargo.toml --target aarch64-linux-android -i openssl-sys
 
       - name: Initialize Tauri Android project
         run: npm run tauri android init
